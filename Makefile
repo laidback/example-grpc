@@ -10,12 +10,12 @@ all: server client gateway
 
 SERVER_FLAGS := \
 	--proto_path=./protos \
-	--python_out=grpctest/server \
-	--grpc_python_out=grpctest/server \
+	--python_out=$(PROJECT)/server \
+	--grpc_python_out=$(PROJECT)/server \
 
 SERVER_GW_FLAGS := \
-	--python_out=grpctest/server \
-	--grpc_python_out=grpctest/server
+	--python_out=$(PROJECT)/server \
+	--grpc_python_out=$(PROJECT)/server
 
 server:
 	python3 -m grpc_tools.protoc $(SERVER_FLAGS) $(GRPC_FLAGS) protos/*.proto
@@ -24,19 +24,19 @@ server:
 
 CLIENT_FLAGS := \
 	--proto_path=./protos \
-	--python_out=grpctest/client \
-	--grpc_python_out=grpctest/client
+	--python_out=$(PROJECT)/client \
+	--grpc_python_out=$(PROJECT)/client
 
 CLIENT_GW_FLAGS := \
-	--python_out=grpctest/client \
-	--grpc_python_out=grpctest/client
+	--python_out=$(PROJECT)/client \
+	--grpc_python_out=$(PROJECT)/client
 
 client:
 	python3 -m grpc_tools.protoc $(CLIENT_FLAGS) $(GRPC_FLAGS) protos/*.proto
 	python3 -m grpc_tools.protoc $(CLIENT_GW_FLAGS) $(GRPC_FLAGS) google/api/annotations.proto
 	python3 -m grpc_tools.protoc $(CLIENT_GW_FLAGS) $(GRPC_FLAGS) google/api/http.proto
 
-GATEWAY_SRC_DIR := $(GOPATH)/src/github.com/laidback/grpctest
+GATEWAY_SRC_DIR := $(GOPATH)/src/github.com/laidback/$(PROJECT)
 GATEWAY_GRPC_DIR := $(GATEWAY_SRC_DIR)/gateway
 GATEWAY_FLAGS := \
 	--proto_path=./protos \
@@ -47,7 +47,7 @@ gateway_dirs:
 	mkdir -p $(GATEWAY_GRPC_DIR)
 
 gateway: gateway_dirs
-	cp grpctest/gateway/gateway.go $(GATEWAY_SRC_DIR)
+	cp $(PROJECT)/gateway/gateway.go $(GATEWAY_SRC_DIR)
 	python3 -m grpc_tools.protoc $(GATEWAY_FLAGS) $(GRPC_FLAGS) protos/*.proto
 	go build -o bin/gateway $(GATEWAY_SRC_DIR)/gateway.go
 
@@ -58,5 +58,7 @@ deps:
 	go get -u google.golang.org/grpc
 
 .PHONY: gateway_dirs
+
+# vim: noexpandtab:
 
 # vim: noexpandtab:

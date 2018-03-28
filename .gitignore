@@ -17,3 +17,4 @@ grpctest/client/google/api/*
 grpctest/server/grpctest_pb2*
 grpctest/server/google/api/*
 
+.DS_Store
