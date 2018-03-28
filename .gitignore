@@ -1,0 +1,19 @@
+# Common
+*.swp
+*.swo
+
+# Env specific stuff, needs to be setup
+.grpctest
+__pycache__
+
+# Do not track binary output
+bin/*
+!bin/.gitkeep
+
+# Do not track grpc generated output
+grpctest/client/grpctest_pb2*
+grpctest/client/google/api/*
+
+grpctest/server/grpctest_pb2*
+grpctest/server/google/api/*
+
