@@ -1,4 +1,4 @@
-
+#1/usr/bin/env groovy
 
 pipeline {
   agent any
@@ -7,6 +7,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building..'
+        sh 'make --version'
       }
     }
     stage('Test') {
@@ -21,3 +22,5 @@ pipeline {
     }
   }
 }
+
+# vim: sw=2 ts=2 sts=2 et ai nowrap:
