@@ -55,7 +55,7 @@ GATEWAY_FLAGS := \
 gateway_dirs:
 	mkdir -p $(GATEWAY_GRPC_DIR)
 
-gateway: gateway_dirs
+gateway: gateway_dirs swagger
 	cp $(PROJECT)/gateway/gateway.go $(GATEWAY_SRC_DIR)
 	python3 -m grpc_tools.protoc $(GATEWAY_FLAGS) $(GRPC_FLAGS) protos/*.proto
 	go build -o bin/gateway $(GATEWAY_SRC_DIR)/gateway.go
@@ -69,7 +69,7 @@ deps:
 # -----------------------------------------------------------------------------
 # Create Swagger definitions
 # -----------------------------------------------------------------------------
-SWAGGER_FLAGS := --swagger_out=logtostderr=true:bin \
+SWAGGER_FLAGS := --swagger_out=logtostderr=true:$(GATEWAY_SRC_DIR) \
 
 swagger:
 	python3 -m grpc_tools.protoc $(SWAGGER_FLAGS) $(GRPC_FLAGS) protos/*.proto
