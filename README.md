@@ -8,6 +8,7 @@ $ pip --version
 $ go --version
 >1.9
 $ export GOPATH=$(go env GOPATH)
+$ export PATH=$PATH:$(go env GOBIN)
 $ make --version
 >4.2
 ```
