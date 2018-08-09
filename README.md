@@ -42,5 +42,5 @@ $ make all
 ## Test gRPC Gateway:
 
 ```
-curl -sSk -XPOST localhost:8080/v1/echo -d {"name": "yeah"}
+curl -sSk -XPOST localhost:8080/v1/echo -d '{"name": "yeah"}'
 ```
