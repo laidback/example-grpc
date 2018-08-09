@@ -9,6 +9,7 @@ __pycache__
 # Do not track binary output
 bin/*
 !bin/.gitkeep
+!bin/gwtest.sh
 
 # Do not track grpc generated output
 grpctest/client/grpctest_pb2*
@@ -18,3 +19,4 @@ grpctest/server/grpctest_pb2*
 grpctest/server/google/api/*
 
 .DS_Store
+/venv
