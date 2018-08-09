@@ -1,12 +1,25 @@
 # Setup
 
 ```
-$ cd grpctest
-$ python3 -m venv
+$ python --version
+>3.6
+$ pip --version
+>3.6
+$ go --version
+>1.9
+$ export GOPATH=$(go env GOPATH)
+$ make --version
+>4.2
+```
+
+```
+# inside repo
+$ python3 -m venv venv
 $ source venv/bin/activate
 $ pip3 install --upgrade pip
 $ pip3 install -r requirements.txt
-$ make deps
+$ make deps       # takes usually longer
+$ make all
 ```
 
 # TESTING:
